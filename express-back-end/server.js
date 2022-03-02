@@ -12,9 +12,6 @@ mongoose
     console.log(err)
   })
 
-app.get('/', (req, res) => {
-  res.send('You are requesting');
-})
 
 app.get("/api/test", () => {
   console.log("testing success")
