@@ -49,7 +49,7 @@ router.get("/:id", verifyTokenAndAdmin, async (req, res) => {
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new
   try {
-    const users = query ? await User.find().sort({ _id: -1 }).limit(1) : await User.find();
+    const users = query ? await User.find().sort({ _id: -1 }).limit(5) : await User.find();
 
     res.status(200).json(users);
   } catch (err) {
@@ -58,7 +58,8 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 })
 
 
-//get user stats
+// GET USER STATS
+
 router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
@@ -83,6 +84,5 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;
